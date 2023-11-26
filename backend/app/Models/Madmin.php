@@ -10,17 +10,28 @@ class Madmin extends Model
     use HasFactory;
 }
 
-function checkUpdateData($nama, $id)
-
+function searchData($keyword)
     {
-      //tampilkan data dari "tb_mahasiswa"
-      $query = DB::table('tb_data')
-      ->select("id",
-      "nama ",
-      "golongan darah",
-      "usia",
-      "telpon",
-      "create_at")
-      ->where("nama","$nama")
-        ->get();
+         //tampilkan data dari "tb_donor"
+         $query = DB::table('tb_donor')
+         ->select("id",
+         "nama",
+         "golongan darah",
+         "usia",
+         "telpon",
+         "create_at")
+         ->where("nama","$keyword")
+      //->orwhere("nama","LIKE","%$keyword%")
+      // ->orWhere("nama","LIKE","%$keyword%")
+        // ->orWhereRaw("REPLACE(nama,' ','') LIKE REPLACE ('%$keyword%',' ','')")
+         ->orWhere(DB::raw("REPLACE(nama,' ','')"),"LIKE",DB::raw("REPLACE('%$keyword%',' ','')"))
+         ->orwhere("create_at","$keyword")
+         ->orwhere("telpon","LIKE","%$keyword%")
+         ->orderBY("id")
+         ->get();
+
+
+      //mengirim hasil variabel "query" ke controller "mahasiswa"
+         return $query;
+
     }
