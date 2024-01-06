@@ -54,4 +54,10 @@ class Madmin extends Model
         //mengirim hasil variabel "query" ke controller "mahasiswa"
         return $query;
     }
+
+    function deleteData($id)
+   {
+    DB::table("tb_data")
+    ->delete($id);
+   }
 }

@@ -26,3 +26,5 @@ Route::get('/admin/get',[Admin::class,'getController']);
 Route::get('/admin/search/{keyword}',[Admin::class,'searchController']);
 
 Route::get('/admin/detail/{id}',[Admin::class,'detailController']);
+
+Route::delete('/admin/delete/{id}',[Admin::class,'deleteController']);

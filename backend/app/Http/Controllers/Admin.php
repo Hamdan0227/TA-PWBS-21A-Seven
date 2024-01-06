@@ -48,4 +48,25 @@ class Admin extends Controller
                return response(["admin"=> $result], http_response_code());
        
    }
+
+   function deleteController($id)
+   {
+      
+      if(count($this->model->detailData($id))==1)
+       {
+          
+          $this->model->deleteData($id);
+          //buat status dan pesan
+          $status = 1;
+          $message = "Data Berhasil Dihapus";         }
+       //jika data tidak tersedia
+       else
+       {
+          $status = 0;
+          $message = "Data Gagal Dihapus ! (NPM Tidak Ditemukan)";
+       }
+
+       //Kembalikan Nilai variabel "result" ke dalam object "Admin"
+       return response(["status" => $status,"message"=>$message],http_response_code());
+   }
 }
