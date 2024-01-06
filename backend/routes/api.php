@@ -22,4 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/admin/get',[Admin::class,'getController']);
 
+//buat route pencarian
+Route::get('/admin/search/{keyword}',[Admin::class,'searchController']);
+
 Route::get('/admin/detail/{id}',[Admin::class,'detailController']);
