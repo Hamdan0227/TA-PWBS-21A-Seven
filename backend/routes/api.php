@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/admin/get',[Admin::class,'getController']);
+
+Route::get('/admin/detail/{id}',[Admin::class,'detailController']);

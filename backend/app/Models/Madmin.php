@@ -10,17 +10,24 @@ class Madmin extends Model
 {
     // use HasFactory;
 
-    //buat fungsi untuk ambil data "tb_data"
+    //buat fungsi untuk ambil data "tb_mahasiswa"
     function getData()
     {
-        //tampilkan data dari "tb_data"
+        //tampilkan data dari "tb_mahasiswa"
         $query = DB::table('tb_data')
-                ->select("id","nama","golongan_darah","usia",
+                ->select("id AS id_data","nama","golongan_darah","usia",
                 "telpon")
                 ->orderBy("id")
                 ->get();
-        //mengirim hasil variabel "query" ke controller "admin"
+        //mengirim hasil variabel "query" ke controller "mahasiswa"
         return $query;
     }
 
+    function detailData($id)
+    {  
+            //tampilkan data dari "tb_data"
+            $query = DB::table('tb_data')
+                    ->select("id","nama","golongan_darah","usia","telpon","create_at");
+                    //->where(DB::raw("TO_BASE64(MD5(id))"),"$id")
+    }
 }
