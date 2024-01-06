@@ -26,3 +26,6 @@ Route::get('/admin/get',[Admin::class,'getController']);
 Route::get('/admin/search/{keyword}',[Admin::class,'searchController']);
 
 Route::get('/admin/detail/{id}',[Admin::class,'detailController']);
+
+//buat route untuk update data
+Route::put('/admin/update/{id}', [Admin::class,'updateController']);

@@ -26,7 +26,7 @@ class Madmin extends Model
     //buat fungsi pencarian data
     function searchData($keyword)
     {
-        //tampilkan data dari "tb_mahasiswa"
+        //tampilkan data dari "tb_data"
         $query = DB::table('tb_data')
                 ->select("id AS id_data","nama","golongan_darah","usia",
                 "telpon")
@@ -37,7 +37,7 @@ class Madmin extends Model
                 ->orWhere("telpon","$keyword")
                 ->orderBy("id")
                 ->get();
-        //mengirim hasil variabel "query" ke controller "mahasiswa"
+        //mengirim hasil variabel "query" ke controller "admin"
         return $query;
     }
 
@@ -45,7 +45,38 @@ class Madmin extends Model
     {  
             //tampilkan data dari "tb_data"
             $query = DB::table('tb_data')
-                    ->select("id","nama","golongan_darah","usia","telpon","create_at");
+                    ->select("id","nama","golongan_darah","usia","telpon");
                     //->where(DB::raw("TO_BASE64(MD5(id))"),"$id")
     }
+
+    function checkUpdateData($nama,$id)
+   {
+    //tampilkan data dari "tb_mahasiswa"
+    $query = DB::table('tb_data')
+    ->select("id AS id_data","nama","golongan_darah","usia",
+    "telpon")
+    // ->where(DB::raw("TO_BASE64(MD5(npm))"),"!=","$id")
+    ->where("nama","$nama")
+    ->get($id);
+//mengirim hasil variabel "query" ke controller "mahasiswa"
+return $query;
+   }
+   // fungsi untuk update data
+   function updateData($nama,$golongan_darah,$usia,$telpon,$id)
+   {
+    //ambil data
+    //"npm" = nama field
+    //"$npm" = nama Parameter
+    $result = [
+        "nama" => $nama,
+        "golongan_darah" => $golongan_darah,
+        "usia" => $usia,
+        "telpon" => $telpon
+        
+    ];
+    //perintah untuk update
+    DB::table("tb_data")
+    // ->where(DB::raw("TO_BASE64(MD5(npm))"), "$id")
+    ->update($result);
+   }
 }

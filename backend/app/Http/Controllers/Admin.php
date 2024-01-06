@@ -31,10 +31,10 @@ class Admin extends Controller
     //Digunakan Untuk pencarian data
     function searchController($keyword)
     {
-         //isi nilai dari variabel "result" dari fungsi "searchData" dari model "Mmahasiswa" sesuai dengan isi parameter
+         //isi nilai dari variabel "result" dari fungsi "searchData" dari model "Madmin" sesuai dengan isi parameter
          $result = $this->model->searchData($keyword);
 
-         //Kembalikan nilai variabel "result" ke dalam object "mahasiswa"
+         //Kembalikan nilai variabel "result" ke dalam object "admin"
         return response(["admin"=> $result], http_response_code());
     }
 
@@ -47,5 +47,39 @@ class Admin extends Controller
                  //Kembalikan nilai variabel "result" ke dalam object "Admin"
                 return response(["admin"=> $result], http_response_code());
         
+    }
+
+    //buat fungsi untuk ubah data
+    function updateController(Request $req,$id)
+    {
+       //ambil data input
+       $data = [
+           "nama" => $req->nama,
+           "golongan_darah" => $req->golongan_darah,
+           "usia" => $req->usia,
+           "telpon" => $req->telpon
+       ];
+   
+       //lakukan pengecekan apakah data "npm" yang diisi sudah pernah tersimpan/belum di database
+      
+       //jika data tidak tersedia
+       if(count($this->model->checkUpdateData($data["nama"],$id))==0)
+       {
+           //Lakukan perubahan data
+           //panggil model checkupdatedata dari model "Mmahasiswa"
+           $this->model->updateData($data["nama"],$data["golongan_darah"],$data["usia"],$data["telpon"], $id);
+
+           $status = 1;
+           $message = "Data Berhasil DiUpdate!";
+       }
+       //jika data  tersedia
+       else
+       {
+           $status = 0;
+           $message = "Data Gagal DiUpdate !";
+       }
+      
+       //Kembalikan Nilai variabel "result" ke dalam object "Mahasiswa"
+      return response(["status" => $status,"message"=>$message],http_response_code());
     }
 }
