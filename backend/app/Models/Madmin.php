@@ -34,4 +34,22 @@ function searchData($keyword)
       //mengirim hasil variabel "query" ke controller "Admin"
          return $query;
 
+         //buat fungsi untuk simpan data
+    function saveData($npm,$nama,$telepon,$jurusan)
+    {
+      //ambil data
+      // "npm" = nama filed 
+      // "$npm" = nama parameter
+      $result = [
+        "nama" =>$nama,
+        "golongan darah" => $golongan_darah,
+        "usia"=> $usia,
+        "telpon" => $telepon
+
+      ];
+      // perintah simpan data
+      DB::table('tb_data')
+         ->insert($result);
+    }
+
     }

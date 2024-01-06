@@ -20,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //baut route untuk pencarian
 Route::get('/Admin/search/{keyword}',[Admin::class,'searchController']);
+
+//buat route untuk simpan data
+Route::post('/Admin/save/', [Admin::class,'saveController']);
