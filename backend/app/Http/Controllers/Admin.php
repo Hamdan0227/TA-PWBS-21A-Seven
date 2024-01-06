@@ -38,14 +38,14 @@ class Admin extends Controller
         return response(["admin"=> $result], http_response_code());
     }
 
-    //buat fungsi detail data
-    function detailController($id)
-    {
-                 //isi nilai dari variabel "result" dari fungsi "detailData" dari model "Madmin" sesuai dengan isi parameter "id"
-                 $result = $this->model->detailData($id);
+   //buat fungsi detail data
+   function detailController($id)
+   {
+                
+                $result = $this->model->detailData($id);
 
-                 //Kembalikan nilai variabel "result" ke dalam object "Admin"
-                return response(["admin"=> $result], http_response_code());
-        
-    }
+                //Kembalikan nilai variabel "result" ke dalam object "mahasiswa"
+               return response(["admin"=> $result], http_response_code());
+       
+   }
 }

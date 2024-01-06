@@ -42,10 +42,16 @@ class Madmin extends Model
     }
 
     function detailData($id)
-    {  
-            //tampilkan data dari "tb_data"
-            $query = DB::table('tb_data')
-                    ->select("id","nama","golongan_darah","usia","telpon","create_at");
-                    //->where(DB::raw("TO_BASE64(MD5(id))"),"$id")
+    {
+        //tampilkan data dari "tb_mahasiswa"
+        $query = DB::table('tb_data')
+                ->select("id AS id_data","nama","golongan_darah","usia",
+                 "telpon")
+                // ->where(DB::raw("TO_BASE64(npm)"),"$id")
+                // ->where(DB::raw,"$id")
+
+                ->get($id);
+        //mengirim hasil variabel "query" ke controller "mahasiswa"
+        return $query;
     }
 }
