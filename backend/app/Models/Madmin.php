@@ -31,7 +31,7 @@ function searchData($keyword)
          ->get();
 
 
-      //mengirim hasil variabel "query" ke controller "mahasiswa"
+      //mengirim hasil variabel "query" ke controller "Admin"
          return $query;
 
     }
